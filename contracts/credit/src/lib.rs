@@ -2033,7 +2033,10 @@ mod test {
         client.draw_credit(&borrower, &300_i128);
         client.repay_credit(&borrower, &200_i128);
 
-        assert_eq!(client.get_credit_line(&borrower).unwrap().utilized_amount, 100_i128);
+        assert_eq!(
+            client.get_credit_line(&borrower).unwrap().utilized_amount,
+            100_i128
+        );
         // Current repay implementation is state-only; token balances/allowances are unchanged.
         assert_eq!(liquidity.balance(&borrower), 550_i128);
         assert_eq!(liquidity.allowance(&borrower, &contract_id), 200_i128);
